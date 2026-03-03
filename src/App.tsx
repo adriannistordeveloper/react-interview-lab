@@ -9,10 +9,16 @@ import ExercisePage from './pages/ExercisePage';
 function App() {
 
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "light"
+  );
 
   const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    setTheme(prev => {
+      const newTheme = prev === "light" ? "dark" : "light";
+      localStorage.setItem("theme", newTheme);
+      return newTheme;
+    });
   };
 
   return (
@@ -27,7 +33,7 @@ function App() {
           color: "var(--text-color)"
         }}
       >
-        <Navbar toggleTheme={toggleTheme} />
+        <Navbar toggleTheme={toggleTheme} theme={theme} />
 
         <div style={{ display: "flex", flex: 1, minWidth: 0 }}>
           <Sidebar isOpen={sidebarOpen} />
