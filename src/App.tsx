@@ -1,34 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
+import Navbar from './components/Navbar'
+import Sidebar from './components/Sidebar'
+import { useState } from 'react';
+import Dashboard from './pages/Dashboard';
+import ExercisePage from './pages/ExercisePage';
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <BrowserRouter>
+      <Navbar />
+      <div style={{ display: "flex", height: "calc(100vh - 60px)" }}>
+        <Sidebar isOpen={sidebarOpen} />
+        <button
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          style={{
+            width: "32px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            border: "none",
+            background: "white",
+            borderRight: "1px solid #ddd",
+            cursor: "pointer",
+            fontSize: "18px"
+          }}
+        >
+          {sidebarOpen ? "‹" : "›"}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <div style={{ flex: 1 }}>
+          <Routes>
+            <Route path="/" element={<Dashboard />}/>
+            <Route path="/exercise/:id" element={<ExercisePage />}/>
+          </Routes>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </BrowserRouter>
   )
 }
 
