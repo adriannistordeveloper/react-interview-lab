@@ -7,8 +7,8 @@ interface Exercises {
 export const exercises: Exercises[] = [
     {
         id: "rendering-1",
-        title: "Rendering Basics",
-        description: "Lorem ipsum"
+        title: "FetchUsersOnMountWithAPI",
+        description: "with localhost endpoint"
     },
     {
         id: "rendering-2",
@@ -18,6 +18,16 @@ export const exercises: Exercises[] = [
     {
         id: "rendering-3",
         title: "Rendering Basics",
+        description: "Lorem ipsum3"
+    },
+    {
+        id: "rendering-4",
+        title: "TODO",
+        description: "Lorem ipsum3"
+    },
+    {
+        id: "rendering-5",
+        title: "FORM",
         description: "Lorem ipsum3"
     }
 ]
