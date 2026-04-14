@@ -14,6 +14,8 @@ export default function ExercisePage() {
     );
   }
 
+  const ExerciseComponent = exercise.component;
+
   return (
     <div style={{ padding: "20px" }}>
       <h2>{exercise.title}</h2>
@@ -25,6 +27,9 @@ export default function ExercisePage() {
 
       <div style={{ marginTop: "20px" }}>
         <h3>Code View (Phase 2)</h3>
+        <div style={{ marginTop: "12px" }}>
+          <ExerciseComponent />
+        </div>
       </div>
     </div>
   );
